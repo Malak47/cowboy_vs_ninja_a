@@ -1,141 +1,113 @@
 # cowboy_vs_ninja_a
 
-בתרגיל זה ניצור סימולציה של קרב בין נינגות ובוקרים
+In this exercise, we will create a simulation of a battle between ninjas and cowboys.
 
-# חלק 1 Point
+# Part 1 Point
 
-תחילה, נכתוב מחלקה שתעזור לנו לשמור מיקום על לוח המשחק. המיקום נתון כשתי קורדינאטות מסוג double ששומרות
-את מיקום היחידה לאורך הצירים x ו - y בהתאם.
-על ממשק המחלקה לתמוך בפעולות הבאות:
+First, we will write a class that will help us keep track of the position on the game board. The position is given by
+two coordinates of type double that represent the unit's location along the x and y axes, respectively. The class
+interface should support the following operations:
 
-קונסטרקטור מקבל את שתי הקואורדינאטות –
+- `Constructor` that takes two coordinates.
+- `distance` method that takes a point and calculates the distance between the two points.
+- `print` method that prints the two coordinates within parentheses.
+- `moveTowards` method that takes a source point, a target point, and a distance. The function returns the point closest
+  to the target point that is within the given distance from the source point.
 
-מרחק distance
-מקבלת נקודה ומחשבת את המרחק בין שתי הנקודות –
+# Part 2 Character
 
-הדפסה print
-מדפיסה את שתי הקואורדינטות בין סוגריים. -
+This class represents a **character**. A character has a position (of type Point), a hit points value (represented by an
+integer), and a name (represented by a string). The character class defines the following functions:
 
-לזוז ל moveTowards
-מקבלת נקודת מקור, נקודת יעד ומרחק. הפונקציה מחזירה את הנקודה הקרובה ביותר לנקודת היעד, –
-שנמצאת כל היותר במרחק הנתון מנקודת המקור
+- `isAlive` method that returns a boolean value indicating whether the character is alive (i.e., has more than zero hit
+  points).
+- `distance` method that takes a pointer to another character and returns the distance between the characters (as a
+  double).
+- `hit` method that takes an integer value representing the damage points and subtracts it from the character's hit
+  points.
+- `getName` method that returns the character's name.
+- `getLocation` method that returns the character's position.
+- `print` method that prints the character's name, the number of hit points, and the character's position. If the
+  character is dead (hit points are zero), the number of hit points will not be printed, and the name will be enclosed
+  in parentheses. Before the name, there will be a letter indicating the type of character: "N" for ninja and "C" for
+  cowboy.
 
-# חלק 2 Character
+For **cowboys**, there is an additional parameter defined called "bullets" (an integer). Cowboys are always created with six
+bullets and 110 hit points. The following functions are defined specifically for cowboys:
 
-מחלקה זו מציינת דמות. לדמות יש מיקום )מסוג Point (, נקודות פגיעה )מיוצג ע"י מספר שלם( ושם שמיוצג ע"י מחרוזת
-תווים.
-פונקציות המוגדרות על דמות:
+- `shoot` method that takes a pointer to an enemy. If the cowboy is alive and has bullets remaining, the cowboy shoots
+  the enemy, deducting 10 hit points from the enemy and losing one bullet. Otherwise, no damage will be inflicted on the
+  enemy.
+- `hasBullets` method that returns a boolean value indicating whether the cowboy has bullets left in the gun.
+- `reload` method that reloads the gun with six new bullets.
 
-האם חייisAlive()
-מחזיר ערך בוליאני האם הדמות בחיים )כלומר יש לה יותר מאפס נקודות פגיעה( – –
+For **ninjas**, there is a parameter defined called "speed" (an integer). The following functions are defined specifically
+for ninjas:
 
-מרחק distance
-מקבל פוינטר לדמות אחרת ומחזיר את המרחק בין הדמויות ) – – double .)
+- `move` method that takes a pointer to an enemy and advances towards the enemy. The ninja moves a distance equal to its
+  speed.
+- `slash` method that takes a pointer to an enemy. If the ninja is alive and the enemy is within a distance of less than
+  one meter, the ninja causes 40 damage points to the enemy. Otherwise, no damage will be inflicted on the enemy.
 
-פגע hit
-מקבל מספר שלם. מחסיר את כמות נקודות הפגיעה המתאים מהדמות. לא מחזיר דבר. –
+There are **three types** of ninjas:
 
-שם getName()
-מחזיר את שם הדמות. -
+- `YoungNinja`: Created with 100 hit points, moves with a speed of 14.
+- `TrainedNinja`: Created with 120 hit points, moves with a speed of 12.
+- `OldNinja`: Created with 150 hit points, moves with a speed of 8.
 
-מיקום getLocation()
-מחזיר את מיקום הדמות. -
+# Part 3 Team
 
-הדפסה print()
-מדפיס את שם הדמות, את מספר נקודות הפגיעה שלה, ואת הנקודה בה הדמות נמצאת. אם הדמות מתה מספר - -
-נקודות הפגיעה לא יודפס, ושם הדמות יופיע בסוגריים. לפני השם תופיע אות שמציינת את סוג הדמות: N לנינג'ה ו - C
-לבוקר.
+This class represents a **team** of up to ten fighters, where each fighter can be a ninja or a cowboy. Each team has a
+leader, who is one of the fighters.
 
-עבור בוקרים מוגדר גם הפרמטר "כמות כדורים" )מספר שלם( בוקר תמיד נוצר עם שישה כדורים ו 110 נקודות פגיעה. -
-הפונקציות הבאות מוגדרות עבור בוקרים בלבד:
+When a team is created, it receives a pointer to the leader. The class defines the following functions:
 
-לירות shoot
-מקבל מצביע לאוייב. אם הבוקר לא מת ונשארו לו כדורים, הבוקר יורה באויב, מחסיר מהאויב 10 נקודות פגיעה –
-ומאבד כדור אחד. אחרת, לא ייגרם לאויב כל נזק.
+- `add` method that takes a pointer to a cowboy or ninja and adds it to the team.
+- `attack` method that takes a pointer to an enemy team. The attack of the enemy team is performed as follows:
+    - First, check if the attacking team's leader is alive. Otherwise, choose a new leader, which is the closest living
+      character (in terms of location) to the deceased leader.
+    - Then, the attacking team selects a target from the enemy team. The target is a member of the enemy team that is
+      the closest living character to the attacking team's leader.
+    - All living members of the attacking team will attack the selected target. Cowboys with bullets will shoot at the
+      target, deducting damage points, and cowboys without bullets will reload their guns. Ninjas within a distance of
+      less than one meter from the target will slash the target, and ninjas further away will move towards the target.
+      At any stage, if the target dies, a new target will be chosen (again, the closest living character to the
+      attacking team's leader).
+    - If there are no living members in the attacking team or the enemy team, the attack ends.
+- `stillAlive` method that returns an integer representing the number of living members in the team.
+- `print` method that iterates over all characters in the team and prints their details.
+- `Destructor` that frees the memory allocated for all the characters in the team.
 
-בדיקת מחסנית hasboolets()
-מחזיר – Boolean שמציין האם נשארו כדורים באקדח של הבוקר.
+When iterating over the members of the team (for attack, print, or comparison purposes), the order of iteration is as
+follows: first, iterate over all the cowboys, and then iterate over all the ninjas. Within each team, the iteration
+should be based on the order of adding the characters. The purpose of splitting cowboys and ninjas in this part is to
+make it easier for you. If you find that the requirement complicates the implementation, think of an alternative
+approach. When finding the closest character and two characters are at the same distance, choose the first character
+checked between them.
 
-טעינה מחדש reload()
-טוען את האקדח בשישה כדורים חדשים.
+# Team2
 
-עבור נינג'ות מוגדר הפרמטר מהירות )מספר שלם(
-הפונקציות הבאותת מוגדרות עבור נינג'ות בלבד:
-
-תזוזה move
-מקבלת מצביע לאוייב ומתקדמת לעבר האוייב. הנינג'ה מתקדמת מרחק השווה למהירות שלה. –
-
-שיסוף slash()
-– – מקבלת מצביע לאוייב. אם הנינג'ה בחיים והאוייב במרחק של פחות ממטר אחד הנינג'ה תגרום לאוייב נזק של 40
-נקודות פגיעה. אחרת, לא ייגרם לאוייב כל נזק.
-
-יש שלושה סוגים של נינג'ות:
-
-YoungNinja
-נעות במהירות 14 . נוצרות עם 100 נקודות פגיעה. –
-
-TrainedNinja
-נעות במהירות 12 . נוצרות עם 120 נקודות פגיעה. –
-
-OldNinja
-נעות במהירות 8. נוצרות עם 150 נקודות פגיעה.
-
-# חלק 3 team
-
-מחלקה זו היא קבוצה של עד עשרה לוחמים, כאשר לוחם יכול להיות נינג'ה או בוקר. לכל קבוצה מוגדר מנהיג שהוא אחד
-הלוחמים.
-כאשר קבוצה נוצרת, היא מקבלת מצביע למנהיג.
-פונקציות המוגדרות לגבי קבוצה:
-
-הוספה add()
-מקבלת מצביע לבוקר או נינג'ה, ומוסיפה אותו לקבוצה. –
-
-תקיפה attack()
-מקבלת מצביע לקבוצה אויבת. תקיפת הקבוצה האויבת תיעשה בצורה הבאה: –
-תחילה יש לבדוק האם מנהיג הקבוצה התוקפת בחיים. אחרת יש לבחור מנהיג חדש, שהוא הדמות החיה הקרובה – –
-ביותר )מבחינת מיקום( למנהיג המת.
-אחר כך הקבוצה תיבחר קורבן מתוך קבוצת האויבים הקורבן הוא חבר קבוצת האויבים החי שעומד קרוב ביותר – – -
-למנהיג הקבוצה התוקפת.
-כל החברים החיים של הקבוצה התוקפת יתקפו את הקורבן הנבחר. בוקרים שיש להם כדורים באקדח יירו בקורבן,
-ובוקרים שאין להם כדורים יטענו את הנשק שלהם. נינג'ות שנמצאות במרחק פחות ממטר אחד מהקורבן ישספו את
-הקורבן, ונינג'ות שנמצאות רחוק יותר יתקדמו לעבר הקורבן. בכל שלב, אם הקורבן מת ייבחר קורבן חדש )שיהיה,
-שוב, דמות האויב החיה הקרובה ביותר למנהיג הקבוצה התוקפת.
-אם אין חברים חיים בקבוצה התוקפת או בקבוצת האויב התקיפה תסתיים. –
-
-האם חיי stillAlive()
-מחזירה מספר שלם כמות חברי הקבוצה שנותרו בחיים. – –
-
-הדפסה print()
-עוברת על כל הדמויות בקבוצה ומדפיסה את פרטיהן. –
-
-דיסטרקטור משחרר את הזכרון שהוקצה לכל הדמויות החברות בקבוצה. –
-
-
-מעבר על כל חברי הקבוצה (לצורך תקיפה, הדפסה, או השוואה) יתבצע תמיד בסדר הבא: קודם כל מעבר על כל הבוקרים,
-ואחר כך מעבר על כל הנינג'ות. בתוך כל קבוצה המעבר יתבצע על פי סדר ההוספה של הדמויות. מטרת הדרישה לפצל בין - -
-בוקרים לנינג'ות בחלק זה היא להקל עליכם. אם אתם מוצאים שהדרישה מסבכת את המימוש חשבו על מימוש אחר. –
-כאשר מחפשים את הדמות הקרובה ביותר, ושתי דמויות נמצאות במרחק זהה, תיבחר הדמות הראשונה שנבדקה ביניהן.
-
-# team2
-
-זהה לteam אך המעבר על הדמויות יהיה לפי סדר ההוספה ללא אבחנה של בוקרים או נינגות
+This class is similar to the `Team` class, but the iteration over the characters should be based on the order of
+addition without distinguishing between cowboys and ninjas.
 
 # SmartTeam
 
-זהה לteam המעבר על הדמויות יהיה לפי בחירתכם לפי איזה סדר שתראו לנכון לממש
-מותר ורצוי בשלב זה "לתשאל" את הקבוצה השניה על מיקומי הכוחות והסטאטוס שלהם כמו גם להתחשב במצב הקבוצה התוקפת כדי למקסם נזק.
-כאשר מטלה זו תיבדק במעבדה סטודנטים עם אלגוריתם חכם, יצירתי, יעיל ואפקטיבי יזכו בנקודות בונוס
-(אי אפשר לעבור את ה10 מקסימום ועדין ניתן לקבל 10 עם אלגוריתם פשוט אבל אלגוריתם טוב יכפה על טעויות במקומות אחרים)
+This class is similar to the `Team` class, but the iteration over the characters can be implemented based on any order
+you consider appropriate, taking into account the positions and statuses of the characters. You are allowed and
+encouraged at this stage to "ask" the second team about the positions and statuses of its forces and take into account
+the situation of the attacking team to maximize the damage. When evaluating this task in a student lab with an
+intelligent, creative, efficient, and effective algorithm, bonus points will be awarded (the maximum is 10 points, and
+you can still receive 10 with a simple algorithm, but a good algorithm will help catch errors in other places).
 
+**Part A**: You should write:
 
+- A header file that includes all the required function declarations (without implementation). Note: The headers should
+  be correct according to what was taught in the lectures - it is recommended to review the material before starting to
+  write.
+- Comprehensive tests for all the required functions.
+    - No need to test the output operator since the format was not defined.
 
-**חלק א**: יש לכתוב:
-
-* קובץ כותרת הכולל את כל הפונקציות הדרושות (ללא מימוש). שימו לב: הכותרות צריכות להיות נכונות בהתאם למה שנלמד בהרצאות - מומלץ לחזור על החומר לפני שמתחילים לכתוב.
-* בדיקות מקיפות לכל הפונקציות הדרושות.
-  * אין צורך לבדוק את  אופרטור הפלט - כיוון שלא הגדרנו את הפורמט.
-
-כיתבו את כל הקבצים הדרושים כך שהפקודות הבאות יעבדו ללא שגיאות:
+Write all the required files so that the following commands work without errors:
 
 <div dir='ltr'>
 
@@ -144,7 +116,7 @@ OldNinja
 
 </div>
 
-מומלץ גם להריץ:
+It is also recommended to run:
 
 <div dir='ltr'>
 
@@ -153,6 +125,6 @@ OldNinja
 
 </div>
 
-אין לשנות קבצים קיימים אלא רק להוסיף קבצים חדשים.
+Do not modify existing files, only add new files.
 
-בהצלחה
+Good luck!
