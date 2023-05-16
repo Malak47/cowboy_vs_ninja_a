@@ -25,7 +25,7 @@ namespace ariel {
 
         void reload();
 
-        bool hasBoolets() const;
+        bool hasboolets() const;
 
         string print();
 

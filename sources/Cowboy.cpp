@@ -24,7 +24,7 @@ namespace ariel {
         bullets = Cowboy_Bullets;
     }
 
-    bool Cowboy::hasBoolets() const {
+    bool Cowboy::hasboolets() const {
         return hasBullets();
     }
 
