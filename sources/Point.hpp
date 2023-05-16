@@ -34,7 +34,7 @@ namespace ariel {
 
         void setY(double y);
 
-        Point moveTowards(Point source, Point destination, double distance);
+        static Point moveTowards(Point source, Point destination, double distance);
 
     };
 }
