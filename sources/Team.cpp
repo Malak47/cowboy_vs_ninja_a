@@ -5,7 +5,8 @@
 
 namespace ariel {
     Team::Team(Character *leader) : leader(leader) {
-        fighters[numberOfFighters++] = leader;
+        //fighters[numberOfFighters++] = leader;
+        fighters.at(numberOfFighters++) = leader;
     }
 
 
@@ -19,7 +20,7 @@ namespace ariel {
 
 
     void Team::add(Character *fighter) {
-        fighters[numberOfFighters++] = fighter;
+        fighters.at(numberOfFighters++) = fighter;
     }
 
     void Team::attack(Team *enemyTeam) {

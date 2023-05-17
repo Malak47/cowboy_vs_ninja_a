@@ -1,0 +1,3 @@
+/home/malaklinux/CLionProjects/cowboy_vs_ninja_a/cmake-build-debug/CMakeFiles/cowboy_vs_ninja_a.dir
+/home/malaklinux/CLionProjects/cowboy_vs_ninja_a/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/malaklinux/CLionProjects/cowboy_vs_ninja_a/cmake-build-debug/CMakeFiles/rebuild_cache.dir
