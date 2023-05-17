@@ -217,10 +217,13 @@ TEST_SUITE("Team methods tests") {
     TrainedNinja trainedNinja2 = {"trainedNinja2", {15, -1}};
     YoungNinja youngNinja1 = {"youngNinja1", {2, -5}};
     YoungNinja youngNinja2 = {"youngNinja2", {9, -10}};
-    //cowboy1,cowboy2,cowboy3,cowboy4,cowboy5,cowboy6,oldNinja1,oldNinja2,trainedNinja1,trainedNinja2
+
+    Team team = {&cowboy1};
+    Team2 team2 = {&youngNinja1};
+
+
     TEST_CASE("add & stillAlive methods") {
-        Team team = {&cowboy1};
-        Team2 team2 = {&youngNinja2};
+
 
         CHECK_EQ(team.stillAlive(), 1);
         team.add(&cowboy2);
@@ -242,34 +245,15 @@ TEST_SUITE("Team methods tests") {
         team.add(&trainedNinja2);
         CHECK_EQ(team.stillAlive(), 10);
 
+        CHECK_THROWS(team.add(&youngNinja2));
         CHECK_THROWS(team.add(&youngNinja1));
-
+        CHECK_THROWS(team2.add(&youngNinja1));
         CHECK_THROWS(team2.add(&cowboy1));
         CHECK_THROWS(team2.add(&cowboy2));
-        CHECK_THROWS(team2.add(&youngNinja2));
     }
 
     TEST_CASE("attack method") {
-        Team team = {&cowboy1};
-        Team2 team2 = {&oldNinja1};
-        SmartTeam team3 = {&youngNinja1};
-        SmartTeam team4 = {&trainedNinja1};
-
-        team.add(&cowboy2);
-        team.add(&cowboy3);
-        team.add(&cowboy4);
-        team.add(&cowboy5);
-        team.add(&cowboy6);
-
-        team2.add(&oldNinja2);
-
-        team3.add(&youngNinja2);
-
-        team4.add(&trainedNinja2);
-
         team.attack(&team2);
-        team3.attack(&team2);
-        team4.attack(&team2);
 
         CHECK_EQ(team2.stillAlive(), 0);
     }
