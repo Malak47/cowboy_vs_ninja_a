@@ -45,5 +45,4 @@ namespace ariel {
         return hitPoints;
     }
 
-
 }

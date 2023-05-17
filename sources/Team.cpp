@@ -4,11 +4,22 @@
 #include "Team.hpp"
 
 namespace ariel {
-    Team::Team(Character *leader) : leader(leader) {}
+    Team::Team(Character *leader) : leader(leader) {
+        fighters[numberOfFighters++] = leader;
+    }
 
-    Team::~Team() {}
+
+    Team::~Team() {
+        size_t i = 0;
+        while (i < numberOfFighters) {
+            delete fighters.at(i);
+            i++;
+        }
+    }
+
 
     void Team::add(Character *fighter) {
+        fighters[numberOfFighters++] = fighter;
     }
 
     void Team::attack(Team *enemyTeam) {
@@ -19,5 +30,9 @@ namespace ariel {
     }
 
     void Team::print() {
+    }
+
+    unsigned long Team::getNumberOfFighters() {
+        return numberOfFighters;
     }
 }

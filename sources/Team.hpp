@@ -19,6 +19,7 @@ namespace ariel {
     private:
         Character *leader;
         array<Character *, TeamMembers> fighters;
+        unsigned long numberOfFighters = 0;
     public:
         Team(Character *leader);
 
@@ -27,6 +28,8 @@ namespace ariel {
         void attack(Team *enemyTeam);
 
         int stillAlive();
+
+        unsigned long getNumberOfFighters();
 
         void print();
 
