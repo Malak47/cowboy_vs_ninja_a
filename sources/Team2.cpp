@@ -13,6 +13,6 @@ namespace ariel {
 
     }
 
-    void Team2::print() const {
+    void Team2::print() {
     }
 }

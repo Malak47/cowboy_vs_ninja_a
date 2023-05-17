@@ -19,9 +19,9 @@ namespace ariel {
     public:
         Character(string name, Point location, int hitPoints);
 
-        bool isAlive() const;
+        bool isAlive();
 
-        double distance(Character *other) const;
+        double distance(Character *other);
 
         void hit(int hit);
 
@@ -31,7 +31,7 @@ namespace ariel {
 
         void print();
 
-        int getHitPoints() const;
+        int getHitPoints();
 
     };
 }

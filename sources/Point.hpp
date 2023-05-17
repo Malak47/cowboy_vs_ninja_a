@@ -15,24 +15,24 @@ using namespace std;
 namespace ariel {
     class Point {
     private:
-        double x, y;
+        double xNum, yNum;
 
     public:
         Point();
 
-        Point(double x, double y);
+        Point(double xNum, double yNum);
 
-        double distance(Point other) const;
+        double distance(Point other);
 
-        void print() const;
+        void print();
 
-        double getX() const;
+        double getX();
 
-        void setX(double x);
+        void setX(double xNum);
 
-        double getY() const;
+        double getY();
 
-        void setY(double y);
+        void setY(double yNum);
 
         static Point moveTowards(Point source, Point destination, double distance);
 

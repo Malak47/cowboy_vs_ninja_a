@@ -11,7 +11,7 @@
 #include "TrainedNinja.hpp"
 #include "OldNinja.hpp"
 
-#define TeamMembers 10
+constexpr int TeamMembers = 10;
 
 using namespace std;
 namespace ariel {
@@ -21,12 +21,21 @@ namespace ariel {
         array<Character *, TeamMembers> fighters;
     public:
         Team(Character *leader);
+
         void add(Character *fighter);
+
         void attack(Team *enemyTeam);
+
         int stillAlive();
+
         void print();
 
         ~Team();
+
+        Team (Team&) = delete; // Copy Constructor.
+        Team (Team&&) noexcept = delete; // Move Constructor.
+        Team& operator = (const Team&) = delete; // Copy assignment operator.
+        Team& operator = (Team&&) noexcept = delete; // Move assignment operator.
     };
 }
 

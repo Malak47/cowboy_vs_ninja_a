@@ -7,13 +7,13 @@
 
 #include "Character.hpp"
 
-#define Cowboy_HitPoints 110
-#define Cowboy_Bullets 6
-#define Cowboy_shotDamage 10
+constexpr int Cowboy_HitPoints = 110;
+constexpr int Cowboy_Bullets = 6;
+constexpr int Cowboy_shotDamage = 10;
 
 using namespace std;
 namespace ariel {
-    class Cowboy : public Character{
+    class Cowboy : public Character {
     private:
         int bullets;
     public:
@@ -21,13 +21,15 @@ namespace ariel {
 
         void shoot(Character *enemy);
 
-        bool hasBullets() const;
+        bool hasBullets();
 
         void reload();
 
-        bool hasboolets() const;
+        bool hasboolets();
 
         string print();
+
+        int getBulletsLeft();
 
     };
 }

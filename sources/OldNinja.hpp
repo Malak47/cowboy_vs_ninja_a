@@ -8,8 +8,8 @@
 
 #include "Ninja.hpp"
 
-#define OldNinja_HitPoints 150
-#define OldNinja_SlashSpeed 8
+constexpr int OldNinja_HitPoints = 150;
+constexpr int OldNinja_Speed = 8;
 
 using namespace std;
 

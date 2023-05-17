@@ -8,11 +8,11 @@ namespace ariel {
     Character::Character(string name, Point location, int hitPoints) : name(name), location(location),
                                                                        hitPoints(hitPoints) {}
 
-    bool Character::isAlive() const {
+    bool Character::isAlive() {
         return hitPoints > 0;
     }
 
-    double Character::distance(Character *other) const {
+    double Character::distance(Character *other) {
         return sqrt((pow((this->location.getX() - other->getLocation().getX()), 2)) +
                     (pow((this->location.getY() - other->getLocation().getY()), 2)));
     }
@@ -41,7 +41,7 @@ namespace ariel {
         cout << endl;*/
     }
 
-    int Character::getHitPoints() const {
+    int Character::getHitPoints() {
         return hitPoints;
     }
 

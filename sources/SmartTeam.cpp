@@ -13,6 +13,6 @@ namespace ariel {
 
     }
 
-    void SmartTeam::print() const {
+    void SmartTeam::print() {
     }
 }

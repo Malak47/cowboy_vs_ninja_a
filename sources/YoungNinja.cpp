@@ -5,5 +5,5 @@
 #include "YoungNinja.hpp"
 
 namespace ariel {
-    YoungNinja::YoungNinja(string name, Point location) : Ninja(name,location,YoungNinja_HitPoints,YoungNinja_SlashSpeed) {}
+    YoungNinja::YoungNinja(string name, Point location) : Ninja(name,location,YoungNinja_HitPoints,YoungNinja_Speed) {}
 }

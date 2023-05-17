@@ -16,7 +16,7 @@ namespace ariel {
         }
     }
 
-    bool Cowboy::hasBullets() const {
+    bool Cowboy::hasBullets() {
         return bullets > 0;
     }
 
@@ -24,7 +24,7 @@ namespace ariel {
         bullets = Cowboy_Bullets;
     }
 
-    bool Cowboy::hasboolets() const {
+    bool Cowboy::hasboolets() {
         return hasBullets();
     }
 
@@ -37,6 +37,10 @@ namespace ariel {
                ", Location: (" + to_string(this->getLocation().getX()) + "," + to_string(this->getLocation().getY()) +
                ")\n";
 
+    }
+
+    int Cowboy::getBulletsLeft() {
+        return bullets;
     }
 
 }

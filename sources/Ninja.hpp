@@ -7,7 +7,7 @@
 
 #include "Character.hpp"
 
-#define Ninja_SlashDamage 40
+constexpr int Ninja_SlashDamage = 40;
 
 using namespace std;
 namespace ariel {

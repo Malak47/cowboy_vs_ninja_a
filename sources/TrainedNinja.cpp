@@ -4,5 +4,5 @@
 
 #include "TrainedNinja.hpp"
 namespace ariel {
-    TrainedNinja::TrainedNinja(string name, Point location) : Ninja(name,location,TrainedNinja_HitPoints,TrainedNinja_SlashSpeed) {}
+    TrainedNinja::TrainedNinja(string name, Point location) : Ninja(name,location,TrainedNinja_HitPoints,TrainedNinja_Speed) {}
 }

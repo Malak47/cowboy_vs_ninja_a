@@ -7,8 +7,8 @@
 
 #include "Ninja.hpp"
 
-#define YoungNinja_HitPoints 100
-#define YoungNinja_SlashSpeed 14
+constexpr int YoungNinja_HitPoints = 100;
+constexpr int YoungNinja_Speed = 14;
 
 using namespace std;
 

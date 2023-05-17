@@ -17,7 +17,7 @@ namespace ariel {
 
         void attack(Team *enemyTeam);
 
-        void print() const;
+        void print();
     };
 }
 #endif //COWBOY_VS_NINJA_A_SMARTTEAM_HPP
