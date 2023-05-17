@@ -60,28 +60,29 @@ TEST_SUITE("Point methods tests") {
         CHECK_EQ(p5.getY(), 2);
     }
 }
+
 TEST_SUITE("Character methods tests") {
     Character char1 = {"Malak", {5, 3}, 150};
     Character char2 = {"Loly", {1, 2}, 120};
     Character char3 = {"NewMalak", {5, 3}, 150};
-    Character *cowboy = new Cowboy{"CowBoy", {1, 1}};
+    Cowboy cowboy = {"CowBoy", {1, 1}};
     TrainedNinja trainedNinja = {"TrainedNinja", {1, 1}};
-    Character *ninja1 = new Ninja{trainedNinja.getName(), trainedNinja.getLocation(), trainedNinja.getHitPoints(),
-                                  trainedNinja.getSpeed()};
-    Character *ninja2 = new OldNinja("OldNinja", {3, 4});
+    Ninja ninja1 = {trainedNinja.getName(), trainedNinja.getLocation(), trainedNinja.getHitPoints(),trainedNinja.getSpeed()};
+    OldNinja ninja2 = {"OldNinja", {3, 4}};
 
 
     TEST_CASE("isAlive method") {
         CHECK_FALSE(!char1.isAlive());
         CHECK_FALSE(!char2.isAlive());
-        CHECK_FALSE(!cowboy->isAlive());
-        CHECK_FALSE(!ninja1->isAlive());
-        CHECK_FALSE(!ninja2->isAlive());
+        CHECK_FALSE(!cowboy.isAlive());
+        CHECK_FALSE(!ninja1.isAlive());
+        CHECK_FALSE(!ninja2.isAlive());
         while (char1.getHitPoints() > 0) {
             char1.hit(10);
         }
         CHECK_FALSE(char1.isAlive());
     }
+
 
     TEST_CASE("distance method") {
         CHECK_EQ(char1.distance(&char2), 4.123106);
@@ -100,9 +101,9 @@ TEST_SUITE("Character methods tests") {
         CHECK_EQ(char1.getName(), "Malak");
         CHECK_EQ(char2.getName(), "Loly");
         CHECK_EQ(char3.getName(), "NewMalak");
-        CHECK_EQ(cowboy->getName(), "CowBoy");
-        CHECK_EQ(ninja1->getName(), "TrainedNinja");
-        CHECK_EQ(ninja2->getName(), "OldNinja");
+        CHECK_EQ(cowboy.getName(), "CowBoy");
+        CHECK_EQ(ninja1.getName(), "TrainedNinja");
+        CHECK_EQ(ninja2.getName(), "OldNinja");
     }
 
     TEST_CASE("getLocation method") {
@@ -116,12 +117,12 @@ TEST_SUITE("Character methods tests") {
         CHECK_EQ(char1.getHitPoints(), 0);
         CHECK_EQ(char2.getHitPoints(), 120);
         CHECK_EQ(char3.getHitPoints(), 100);
-        CHECK_EQ(cowboy->getHitPoints(), 110);
-        CHECK_EQ(ninja1->getHitPoints(), 120);
-        CHECK_EQ(ninja2->getHitPoints(), 120);
+        CHECK_EQ(cowboy.getHitPoints(), 110);
+        CHECK_EQ(ninja1.getHitPoints(), 120);
+        CHECK_EQ(ninja2.getHitPoints(), 120);
     }
-
 }
+
 TEST_SUITE("CowBoy methods tests") {
 
     Cowboy cowboy1 = {"cowboy1", {1, 2}};
@@ -167,8 +168,8 @@ TEST_SUITE("CowBoy methods tests") {
         cowboy1.shoot(&cowboy3);        //10
         CHECK_EQ(cowboy1.getBulletsLeft(), 2);
     }
-
 }
+
 TEST_SUITE("Ninja methods tests") {
     OldNinja oldNinja = {"oldNinja", {1, 2}};
     TrainedNinja trainedNinja = {"trainedNinja", {5, -2}};
@@ -202,7 +203,7 @@ TEST_SUITE("Ninja methods tests") {
     }
 }
 
-
+/*
 TEST_SUITE("Team methods tests") {
     Cowboy cowboy1 = {"cowboy1", {1, 2}};
     Cowboy cowboy2 = {"cowboy2", {5, -2}};
@@ -221,7 +222,6 @@ TEST_SUITE("Team methods tests") {
 
 }
 
-/*
     TEST_CASE("add & stillAlive methods") {
         Team team = {&cowboy1};
         Team team2 = {&youngNinja1};
